@@ -1,0 +1,2 @@
+SHELL=/bin/sh
+0 0 * * * cd /code && python -m src.update >> /var/log/cron/update.log 2>&1
