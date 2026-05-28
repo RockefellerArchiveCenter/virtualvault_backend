@@ -1,5 +1,5 @@
 # virtualvault_backend
-Backend for VirtualVault, which servces assets and an Elasticsearch index over HTTP.
+Backend for Virtual Vault, which serves assets and an Elasticsearch index over HTTP.
 
 ## Getting Started
 
