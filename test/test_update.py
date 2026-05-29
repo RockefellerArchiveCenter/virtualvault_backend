@@ -145,7 +145,7 @@ class UpdateTests(TestCase):
         output = self.updater.get_updated_data(refid_list, 1234567)
         self.assertEqual(output, [{"foo": "bar"}])
         mock_get_paged.assert_called_once_with(
-            '/repositories/2/search?q=refid:00455a772f0d2c3dde0bb2847243b2e2 OR 00455a772f0d2c3dde0bb2847243b2e3&filter={"query": {"jsonmodel_type": "range_query", "field": "system_mtime", "from": "1970-01-15T01:56:07Z"}}&fields[]=json&page=1')
+            '/repositories/2/search?q=refid:00455a772f0d2c3dde0bb2847243b2e2 OR 00455a772f0d2c3dde0bb2847243b2e3&filter={"query": {"jsonmodel_type": "range_query", "field": "system_mtime", "from": "1970-01-15T06:56:07Z"}}&fields[]=json&page=1')
 
     def test_generate_docs(self):
         category = "audio"
