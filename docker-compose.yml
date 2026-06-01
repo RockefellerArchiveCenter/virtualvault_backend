@@ -43,11 +43,11 @@ services:
       - ES_API_KEY=
       - ES_INDEX=default
       - LAST_FETCHED_FILEPATH=/code/config_volume/last_fetched_timestamp.txt
-      - ASSETS_DIR=/var/www/assets
+      - ASSETS_DIR=/var/www
     volumes:
       - ./assets:/var/www/assets
       - ./config_volume:/code/config_volume
-      - ./src:/code/src
+      - ./update:/code
     ports:
       - 8000:8000
       
