@@ -1,6 +1,6 @@
 import json
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from os import getenv
 from pathlib import Path
 
@@ -29,7 +29,7 @@ class Updater(object):
         items and also indexing metadata for new items.
         """
         logging.info("Starting fetch")
-        start_time = int(datetime.now().timestamp())
+        start_time = int(datetime.now(tz=timezone.utc).timestamp())
         last_fetched = self.get_last_fetched_timestamp(
             getenv("LAST_FETCHED_FILEPATH"))
         for category_dir in Path(getenv("ASSETS_DIR")).iterdir():
@@ -97,7 +97,8 @@ class Updater(object):
         if last_fetch:
             logging.debug(
                 f"Fetching data about refids modified since {last_fetch}")
-            last_fetch_datetime = datetime.fromtimestamp(last_fetch)
+            last_fetch_datetime = datetime.fromtimestamp(
+                last_fetch, tz=timezone.utc)
             last_fetch_datestring = last_fetch_datetime.strftime(
                 '%Y-%m-%dT%H:%M:%SZ')
             query = json.dumps(
