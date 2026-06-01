@@ -16,7 +16,7 @@ elastic-transport==9.4.1
     # via elasticsearch
 elasticsearch==9.4.1
     # via -r requirements.in
-idna==3.16
+idna==3.17
     # via
     #   anyio
     #   requests
