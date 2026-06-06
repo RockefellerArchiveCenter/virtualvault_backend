@@ -108,11 +108,11 @@ class Updater(object):
                         "field": "system_mtime",
                         "from": last_fetch_datestring}})
             url = f'/repositories/{
-                self.as_repo}/search?q=refid:{refid_value}&filter={query}&fields[]=json&page=1'
+                self.as_repo}/search?q=refid:{refid_value}&type=archival_object&filter={query}&fields[]=json&page=1'
         else:
             logging.debug("Fetching data about refids")
             url = f'/repositories/{
-                self.as_repo}/search?q=refid:{refid_value}&fields[]=json&page=1'
+                self.as_repo}/search?q=refid:{refid_value}&type=archival_object&fields[]=json&page=1'
         resp = self.as_client.get_paged(url)
         return [json.loads(r['json']) for r in resp]
 
