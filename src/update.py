@@ -1,8 +1,9 @@
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 from os import getenv
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from asnake.aspace import ASpace
 from elasticsearch import Elasticsearch
@@ -29,7 +30,8 @@ class Updater(object):
         items and also indexing metadata for new items.
         """
         logging.info("Starting fetch")
-        start_time = int(datetime.now(tz=timezone.utc).timestamp())
+        start_time = int(
+            datetime.now(ZoneInfo("America/New_York")).timestamp())
         last_fetched = self.get_last_fetched_timestamp(
             getenv("LAST_FETCHED_FILEPATH"))
         for category_dir in Path(getenv("ASSETS_DIR")).iterdir():
@@ -98,7 +100,8 @@ class Updater(object):
             logging.debug(
                 f"Fetching data about refids modified since {last_fetch}")
             last_fetch_datetime = datetime.fromtimestamp(
-                last_fetch, tz=timezone.utc)
+                last_fetch,
+                ZoneInfo("America/New_York"))
             last_fetch_datestring = last_fetch_datetime.strftime(
                 '%Y-%m-%dT%H:%M:%SZ')
             query = json.dumps(

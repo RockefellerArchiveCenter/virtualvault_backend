@@ -1,6 +1,4 @@
-# App-specific
-/assets
-/config_volume
+last_export.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

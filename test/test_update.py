@@ -4,7 +4,7 @@ from os import getenv
 from pathlib import Path
 from shutil import rmtree
 from unittest import TestCase
-from unittest.mock import ANY, Mock, patch
+from unittest.mock import ANY, Mock, call, patch
 
 from src.update import Updater
 
@@ -50,12 +50,10 @@ class UpdateTests(TestCase):
 
         mock_get_last_fetched.assert_called_once_with(
             "last_fetched_timestamp.txt")
-
-        self.assertAlmostEqual(mock_refids.call_count, 3)
-        mock_refids.assert_any_call(Path("assets/moving-image"), 12345)
-        mock_refids.assert_any_call(Path("assets/audio"), 12345)
-        mock_refids.assert_any_call(Path("assets/catalogued-reports"), 12345)
-
+        mock_refids.assert_has_calls([
+            call(Path("assets/moving-image"), 12345),
+            call(Path("assets/audio"), 12345),
+            call(Path("assets/catalogued-reports"), 12345)])
         self.assertEqual(mock_list_chunks.call_count, 6)
         mock_list_chunks.assert_any_call(['00455a772f0d2c3dde0bb2847243b2e2'])
         mock_list_chunks.assert_any_call(
@@ -67,7 +65,6 @@ class UpdateTests(TestCase):
             '00455a772f0d2c3dde0bb2847243b2e4', 12345)
         mock_get_updated.assert_any_call('00455a772f0d2c3dde0bb2847243b2e3', 0)
         mock_get_updated.assert_any_call('00455a772f0d2c3dde0bb2847243b2e4', 0)
-
         self.assertEqual(mock_index.call_count, 12)
         mock_index.assert_any_call(
             'moving-image', [{'foo': 'bar'}, {'baz': 'buz'}], None)
@@ -145,7 +142,8 @@ class UpdateTests(TestCase):
         output = self.updater.get_updated_data(refid_list, 1234567)
         self.assertEqual(output, [{"foo": "bar"}])
         mock_get_paged.assert_called_once_with(
-            '/repositories/2/search?q=refid:00455a772f0d2c3dde0bb2847243b2e2 OR 00455a772f0d2c3dde0bb2847243b2e3&type[]=archival_object&filter={"query": {"jsonmodel_type": "range_query", "field": "system_mtime", "from": "1970-01-15T06:56:07Z"}}&fields[]=json&page=1')
+            '/repositories/2/search?q=refid:00455a772f0d2c3dde0bb2847243b2e2 OR 00455a772f0d2c3dde0bb2847243b2e3&type[]=archival_object&filter={"query": {"jsonmodel_type": "range_query", "field": "system_mtime", "from": "1970-01-15T01:56:07Z"}}&fields[]=json&page=1'
+        )
 
     def test_generate_docs(self):
         category = "audio"
