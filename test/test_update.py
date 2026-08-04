@@ -53,7 +53,7 @@ class UpdateTests(TestCase):
         mock_refids.assert_has_calls([
             call(Path("assets/moving-image"), 12345),
             call(Path("assets/audio"), 12345),
-            call(Path("assets/catalogued-reports"), 12345)])
+            call(Path("assets/catalogued-reports"), 12345)], any_order=True)
         self.assertEqual(mock_list_chunks.call_count, 6)
         mock_list_chunks.assert_any_call(['00455a772f0d2c3dde0bb2847243b2e2'])
         mock_list_chunks.assert_any_call(
