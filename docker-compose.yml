@@ -47,7 +47,6 @@ services:
     volumes:
       - ./assets:/var/www/assets
       - ./config_volume:/code/config_volume
-      - ./update:/code
     ports:
       - 8000:8000
       
