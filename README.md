@@ -16,6 +16,15 @@ docker compose up
 
 By default, this app runs an update job at midnight every day (this schedule can be changed by editing the `crontab` file) which indexes metadata that has been updated in ArchivesSpace for existing items and also indexes metadata for new items.
 
+### Manually running updates
+
+To manually run an update, run the following command from within the container: `python /code/src/update.py`
+
+
+### Deleting items
+
+To delete an item, run the following command from within the container: `python /code/src/delete.py <refid>` where `<refid>` is the ArchivesSpace ref ID of the item to be deleted.
+
 
 ## Expected Asset Structure
 
