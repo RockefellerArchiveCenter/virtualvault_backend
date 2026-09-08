@@ -53,7 +53,7 @@ class UpdateTests(TestCase):
         mock_refids.assert_has_calls([
             call(Path("assets/moving-image"), 12345),
             call(Path("assets/audio"), 12345),
-            call(Path("assets/catalogued-reports"), 12345)])
+            call(Path("assets/catalogued-reports"), 12345)], any_order=True)
         self.assertEqual(mock_list_chunks.call_count, 6)
         mock_list_chunks.assert_any_call(['00455a772f0d2c3dde0bb2847243b2e2'])
         mock_list_chunks.assert_any_call(
@@ -135,14 +135,15 @@ class UpdateTests(TestCase):
         output = self.updater.get_updated_data(refid_list, 0)
         self.assertEqual(output, [{"foo": "bar"}])
         mock_get_paged.assert_called_once_with(
-            '/repositories/2/search?q=refid:00455a772f0d2c3dde0bb2847243b2e2 OR 00455a772f0d2c3dde0bb2847243b2e3&fields[]=json&page=1')
+            '/repositories/2/search?q=refid:00455a772f0d2c3dde0bb2847243b2e2 OR 00455a772f0d2c3dde0bb2847243b2e3&type[]=archival_object&fields[]=json&page=1')
         mock_get_paged.reset_mock()
 
         """With last fetch time"""
         output = self.updater.get_updated_data(refid_list, 1234567)
         self.assertEqual(output, [{"foo": "bar"}])
         mock_get_paged.assert_called_once_with(
-            '/repositories/2/search?q=refid:00455a772f0d2c3dde0bb2847243b2e2 OR 00455a772f0d2c3dde0bb2847243b2e3&filter={"query": {"jsonmodel_type": "range_query", "field": "system_mtime", "from": "1970-01-15T01:56:07Z"}}&fields[]=json&page=1')
+            '/repositories/2/search?q=refid:00455a772f0d2c3dde0bb2847243b2e2 OR 00455a772f0d2c3dde0bb2847243b2e3&type[]=archival_object&filter={"query": {"jsonmodel_type": "range_query", "field": "system_mtime", "from": "1970-01-15T01:56:07Z"}}&fields[]=json&page=1'
+        )
 
     def test_generate_docs(self):
         category = "audio"

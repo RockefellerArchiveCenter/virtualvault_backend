@@ -35,8 +35,8 @@ services:
           condition: service_healthy
     environment:
       - AS_BASEURL=https://as.dev.rockarch.org/api
-      - AS_USERNAME=harnold
-      - AS_PASSWORD=The Farmers Wife!
+      - AS_USERNAME=admin
+      - AS_PASSWORD=admin
       - AS_CHUNK_SIZE=150
       - AS_REPO=2
       - ES_HOST=http://index:9200
@@ -47,7 +47,6 @@ services:
     volumes:
       - ./assets:/var/www/assets
       - ./config_volume:/code/config_volume
-      - ./update:/code
     ports:
       - 8000:8000
       
