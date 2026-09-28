@@ -29,7 +29,7 @@ services:
       - 9200:9200
   update:
     build: .
-    entrypoint: ["httpd", "-D", "FOREGROUND"]
+    entrypoint: /code/startup.sh
     depends_on:
       index:
           condition: service_healthy
@@ -44,6 +44,7 @@ services:
       - ES_INDEX=default
       - LAST_FETCHED_FILEPATH=/code/config_volume/last_fetched_timestamp.txt
       - ASSETS_DIR=/var/www
+      - LOGGING_LEVEL=0
     volumes:
       - ./assets:/var/www/assets
       - ./config_volume:/code/config_volume
