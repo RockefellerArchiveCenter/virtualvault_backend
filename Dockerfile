@@ -17,6 +17,9 @@ RUN mkdir -p /var/log/cron
 COPY crontab /etc/crontabs/root
 RUN crond -b
 
+# Add startup script
+COPY startup.sh .
+
 # Install Python requirements
 COPY requirements.txt .
 RUN pip install -r requirements.txt
@@ -25,5 +28,3 @@ RUN pip install -r requirements.txt
 COPY src/ src/
 
 EXPOSE 8000
-
-CMD [ "python", "-m", "src.update" ]
