@@ -29,7 +29,7 @@ services:
       - 9200:9200
   update:
     build: .
-    entrypoint: ["httpd", "-D", "FOREGROUND"]
+    entrypoint: /code/startup.sh
     depends_on:
       index:
           condition: service_healthy
