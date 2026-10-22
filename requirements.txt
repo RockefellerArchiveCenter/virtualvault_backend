@@ -1,28 +1,28 @@
-anyio==4.14.2
+anyio==4.15.1
     # via elasticsearch
 archivessnake==0.10.1
     # via -r requirements.in
 attrs==26.1.0
     # via archivessnake
-boltons==26.1.0
+boltons==26.2.0
     # via archivessnake
-certifi==2026.7.22
+certifi==2026.10.19
     # via
     #   elastic-transport
     #   requests
-charset-normalizer==3.5.1
+charset-normalizer==3.5.2
     # via requests
 elastic-transport==9.4.2
     # via elasticsearch
-elasticsearch==9.5.0
+elasticsearch==9.5.1
     # via -r requirements.in
-idna==3.19
+idna==3.20
     # via
     #   anyio
     #   requests
-more-itertools==11.1.0
+more-itertools==11.2.1
     # via archivessnake
-python-dateutil==2.9.0.post0
+python-dateutil==3.0.0
     # via elasticsearch
 pyyaml==6.0.3
     # via archivessnake
@@ -44,7 +44,9 @@ typing-extensions==4.16.0
     # via
     #   anyio
     #   elasticsearch
-urllib3==2.7.0
+tzdata==2026.5
+    # via python-dateutil
+urllib3==2.8.0
     # via
     #   elastic-transport
     #   requests
