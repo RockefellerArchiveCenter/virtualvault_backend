@@ -22,8 +22,10 @@ idna==3.20
     #   requests
 more-itertools==11.2.1
     # via archivessnake
-python-dateutil==3.0.0
-    # via elasticsearch
+python-dateutil==2.9.0.post0
+    # via
+    #   -r requirements.in
+    #   elasticsearch
 pyyaml==6.0.3
     # via archivessnake
 rapidfuzz==3.14.6
@@ -44,8 +46,6 @@ typing-extensions==4.16.0
     # via
     #   anyio
     #   elasticsearch
-tzdata==2026.5
-    # via python-dateutil
 urllib3==2.8.0
     # via
     #   elastic-transport
