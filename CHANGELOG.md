@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.1](https://github.com/RockefellerArchiveCenter/virtualvault_backend/compare/v1.0.0...v1.0.1) (2026-11-02)
+
+
+### Bug Fixes
+
+* **deps:** Scheduled dependency updates ([8ad4823](https://github.com/RockefellerArchiveCenter/virtualvault_backend/commit/8ad4823c264e53f0931d6776bddcfd7b7d5cc233))
+* **deps:** Scheduled dependency updates ([8ad4823](https://github.com/RockefellerArchiveCenter/virtualvault_backend/commit/8ad4823c264e53f0931d6776bddcfd7b7d5cc233))
+* **deps:** Scheduled dependency updates ([323cdad](https://github.com/RockefellerArchiveCenter/virtualvault_backend/commit/323cdad95e2c0875d9e89d41e42a551856047616))
+* **deps:** Scheduled dependency updates ([323cdad](https://github.com/RockefellerArchiveCenter/virtualvault_backend/commit/323cdad95e2c0875d9e89d41e42a551856047616))
+* **deps:** Scheduled dependency updates ([811c24d](https://github.com/RockefellerArchiveCenter/virtualvault_backend/commit/811c24dbd77b9e247d9888fb638e20241fcd9945))
+
 ## 1.0.0 (2026-11-02)
 
 
