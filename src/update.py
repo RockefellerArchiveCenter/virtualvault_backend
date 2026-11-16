@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 from asnake.aspace import ASpace
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import streaming_bulk
+from elasticsearch.helpers.errors import BulkIndexError
 from shortuuid import uuid
 
 logging.basicConfig(level=int(getenv('LOGGING_LEVEL', logging.INFO)))
@@ -122,6 +123,7 @@ class Updater(object):
     def generate_docs(self, category, to_index):
         """Formats data for indexing"""
         for obj in to_index:
+            logging.debug(f"Indexing {obj['ref_id']}")
             yield {
                 "_id": obj["ref_id"],
                 "category": category,
@@ -134,12 +136,15 @@ class Updater(object):
     def index_data(self, category, to_index, index):
         """Indexes data in Elasticsearch"""
         errors = []
-        for ok, item in streaming_bulk(
-                client=self.es_client,
-                index=index,
-                actions=self.generate_docs(category, to_index)):
-            if not ok:
-                errors.append(item)
+        try:
+            for ok, item in streaming_bulk(
+                    client=self.es_client,
+                    index=index,
+                    actions=self.generate_docs(category, to_index)):
+                if not ok:
+                    errors.append(item)
+        except BulkIndexError as e:
+            logging.debug(e, e.errors)
         if len(errors):
             raise Exception(
                 f"Errors encountered while indexing: {
