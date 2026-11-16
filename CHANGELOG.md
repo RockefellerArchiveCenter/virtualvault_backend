@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/RockefellerArchiveCenter/virtualvault_backend/compare/v1.0.1...v1.0.2) (2026-11-16)
+
+
+### Bug Fixes
+
+* update logging ([8229516](https://github.com/RockefellerArchiveCenter/virtualvault_backend/commit/822951622827a7c6e83eb38569ea5ff1e06db0a2))
+* update logging ([5fd820e](https://github.com/RockefellerArchiveCenter/virtualvault_backend/commit/5fd820e3f1c7b92afd02a7e2ef82f8ff625816c0))
+
 ## [1.0.1](https://github.com/RockefellerArchiveCenter/virtualvault_backend/compare/v1.0.0...v1.0.1) (2026-11-02)
 
 
